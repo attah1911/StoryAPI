@@ -2,14 +2,14 @@
   "name": "Story App - Dicoding Stories",
   "short_name": "Story App",
   "description": "Share your Dicoding stories with the community",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#667eea",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/favicon.png",
+      "src": "./favicon.png",
       "sizes": "144x144",
       "type": "image/png",
       "purpose": "any"
@@ -17,21 +17,21 @@
   ],
   "screenshots": [
     {
-      "src": "/images/screenshot-mobile-1.png",
+      "src": "./images/screenshot-mobile-1.png",
       "sizes": "750x1334",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Home Screen"
     },
     {
-      "src": "/images/screenshot-mobile-2.png",
+      "src": "./images/screenshot-mobile-2.png",
       "sizes": "750x1334",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Stories Map"
     },
     {
-      "src": "/images/screenshot-desktop-1.png",
+      "src": "./images/screenshot-desktop-1.png",
       "sizes": "1897x908",
       "type": "image/png",
       "form_factor": "wide",
@@ -43,10 +43,10 @@
       "name": "View Stories",
       "short_name": "Stories",
       "description": "Browse all stories on the map",
-      "url": "/#/stories",
+      "url": "./#/stories",
       "icons": [
         {
-          "src": "/favicon.png",
+          "src": "./favicon.png",
           "sizes": "144x144",
           "type": "image/png"
         }
@@ -56,10 +56,10 @@
       "name": "Add Story",
       "short_name": "Add",
       "description": "Share a new story",
-      "url": "/#/add-story",
+      "url": "./#/add-story",
       "icons": [
         {
-          "src": "/favicon.png",
+          "src": "./favicon.png",
           "sizes": "144x144",
           "type": "image/png"
         }
@@ -69,10 +69,10 @@
       "name": "Login",
       "short_name": "Login",
       "description": "Login to your account",
-      "url": "/#/login",
+      "url": "./#/login",
       "icons": [
         {
-          "src": "/favicon.png",
+          "src": "./favicon.png",
           "sizes": "144x144",
           "type": "image/png"
         }

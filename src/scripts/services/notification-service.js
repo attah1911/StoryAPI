@@ -19,7 +19,8 @@ class NotificationService {
     }
 
     try {
-      this.registration = await navigator.serviceWorker.register('/sw.js');
+      const swPath = `${import.meta.env.BASE_URL}sw.js`;
+      this.registration = await navigator.serviceWorker.register(swPath);
       console.log('Service Worker registered');
     } catch (error) {
       console.error('Service Worker registration failed:', error);
