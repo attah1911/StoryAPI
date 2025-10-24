@@ -86,7 +86,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.addEventListener('message', (event) => {
       if (event.data && event.data.type === 'NOTIFICATION_CLICK') {
-        window.location.hash = event.data.url;
+        const url = new URL(event.data.url);
+        window.location.hash = url.hash || '#/stories';
       }
     });
   }

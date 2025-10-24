@@ -22,7 +22,6 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         const urlsToCache = getUrlsToCache();
-        console.log('Caching URLs:', urlsToCache);
         return cache.addAll(urlsToCache);
       })
   );
@@ -98,9 +97,25 @@ self.addEventListener('fetch', (event) => {
 
 self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : {};
+  
   const title = data.title || 'Story App';
   const body = data.body || data.options?.body || 'New story available!';
-  const storyId = data.storyId || data.options?.storyId || null;
+  
+  let storyId = data.storyId 
+    || data.options?.storyId 
+    || data.data?.storyId 
+    || data.options?.data?.id
+    || null;
+  
+  if (!storyId && body) {
+    const storyIdMatch = body.match(/story-[a-zA-Z0-9_-]+/);
+    if (storyIdMatch) {
+      storyId = storyIdMatch[0];
+    }
+  }
+  
+  const baseUrl = new URL(self.registration.scope).origin + new URL(self.registration.scope).pathname;
+  const targetUrl = storyId ? `${baseUrl}#/story/${storyId}` : `${baseUrl}#/stories`;
   
   const options = {
     body: body,
@@ -110,17 +125,17 @@ self.addEventListener('push', (event) => {
     data: {
       dateOfArrival: Date.now(),
       storyId: storyId,
-      url: storyId ? `/#/story/${storyId}` : '/#/stories'
+      url: targetUrl
     },
     actions: [
       {
         action: 'view',
-        title: 'View Story',
+        title: 'Lihat Detail',
         icon: '/favicon.png'
       },
       {
         action: 'close',
-        title: 'Close'
+        title: 'Tutup'
       }
     ]
   };
@@ -134,7 +149,9 @@ self.addEventListener('notificationclick', (event) => {
   event.notification.close();
 
   if (event.action === 'view' || !event.action) {
-    const urlToOpen = event.notification.data.url || '/#/stories';
+    const baseUrl = new URL(self.registration.scope).origin + new URL(self.registration.scope).pathname;
+    const defaultUrl = `${baseUrl}#/stories`;
+    const urlToOpen = event.notification.data.url || defaultUrl;
     
     event.waitUntil(
       clients.matchAll({ type: 'window', includeUncontrolled: true })
