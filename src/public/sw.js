@@ -50,26 +50,52 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
 
   if (url.origin === 'https://story-api.dicoding.dev') {
-    event.respondWith(
-      caches.open(API_CACHE).then((cache) => {
-        return fetch(request)
-          .then((response) => {
-            if (response.status === 200 && request.method === 'GET') {
-              cache.put(request, response.clone());
+    const isImage = url.pathname.includes('/images/') || 
+                    request.destination === 'image' ||
+                    /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(url.pathname);
+    
+    if (isImage) {
+      event.respondWith(
+        caches.open(API_CACHE).then((cache) => {
+          return cache.match(request).then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
             }
-            return response;
-          })
-          .catch(() => {
-            if (request.method === 'GET') {
-              return cache.match(request);
-            }
-            return new Response(
-              JSON.stringify({ error: true, message: 'Network error' }),
-              { status: 503, headers: { 'Content-Type': 'application/json' } }
-            );
+            return fetch(request, { mode: 'cors', credentials: 'omit' }).then((response) => {
+              if (response && (response.ok || response.type === 'opaque')) {
+                cache.put(request, response.clone());
+              }
+              return response;
+            }).catch((error) => {
+              return cache.match('/favicon.png').then(fallback => {
+                return fallback || new Response(null, { status: 404 });
+              });
+            });
           });
-      })
-    );
+        })
+      );
+    } else {
+      event.respondWith(
+        caches.open(API_CACHE).then((cache) => {
+          return fetch(request)
+            .then((response) => {
+              if (response.status === 200 && request.method === 'GET') {
+                cache.put(request, response.clone());
+              }
+              return response;
+            })
+            .catch(() => {
+              if (request.method === 'GET') {
+                return cache.match(request);
+              }
+              return new Response(
+                JSON.stringify({ error: true, message: 'Network error' }),
+                { status: 503, headers: { 'Content-Type': 'application/json' } }
+              );
+            });
+        })
+      );
+    }
   } else if (request.destination === 'document') {
     event.respondWith(
       fetch(request)

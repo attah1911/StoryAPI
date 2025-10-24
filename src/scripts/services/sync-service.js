@@ -53,7 +53,12 @@ class SyncService {
 
       for (const story of unsyncedStories) {
         try {
-          await StoryService.addStory(story.description, story.photo, story.lat, story.lon);
+          await StoryService.createStory({
+            description: story.description,
+            photo: story.photo,
+            lat: story.lat,
+            lon: story.lon
+          });
           await IndexedDB.markStorySynced(story.tempId);
           results.synced++;
         } catch (error) {
