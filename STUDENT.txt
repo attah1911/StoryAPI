@@ -1,0 +1,13 @@
+Nama: [ISI NAMA ANDA]
+Email: [ISI EMAIL ANDA]
+Username Dicoding: [ISI USERNAME DICODING ANDA]
+
+URL Deployment: [ISI SETELAH DEPLOY KE GITHUB PAGES]
+Contoh: https://username.github.io/repository-name/
+
+Catatan:
+- Tidak memerlukan API key untuk map service (menggunakan OpenStreetMap, Esri, OpenTopoMap yang gratis)
+- PWA sudah dapat di-install dan berfungsi offline
+- Push Notification menggunakan VAPID key dari API Dicoding
+- IndexedDB digunakan untuk fitur Favorites dan Offline Sync
+

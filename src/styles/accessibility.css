@@ -1,0 +1,56 @@
+.skip-link {
+  position: fixed;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 14px 28px;
+  text-decoration: none;
+  z-index: 10001;
+  border-radius: 0 0 12px 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 4px solid #fbbf24;
+  outline-offset: 3px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+*:focus {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+}
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[tabindex]:focus {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+}
+
+.story-card:focus {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+  background: linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

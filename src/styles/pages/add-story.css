@@ -1,0 +1,168 @@
+.add-story-page {
+  background: white;
+  min-height: calc(100vh - 150px);
+}
+
+.add-story-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.add-story-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.add-story-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.add-story-content {
+  padding-bottom: 60px;
+}
+
+.add-story-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-story-form .form-group {
+  margin-bottom: 24px;
+}
+
+.add-story-form label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.add-story-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+.add-story-form textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  color: #999;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.photo-input-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.photo-preview {
+  position: relative;
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #e0e0e0;
+  max-width: 400px;
+}
+
+.photo-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.photo-name {
+  margin-top: 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+.camera-container {
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+}
+
+.camera-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.camera-controls {
+  padding: 16px;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.add-story-map {
+  height: 400px;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  margin-top: 8px;
+}
+
+.selected-location {
+  margin-top: 12px;
+  padding: 12px;
+  background: #e3f2fd;
+  border-radius: 8px;
+  color: #1976d2;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .add-story-form-container {
+    padding: 24px 20px;
+    border-radius: 0;
+  }
+
+  .add-story-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .add-story-map {
+    height: 300px;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+
+  .photo-input-group {
+    flex-direction: column;
+  }
+
+  .photo-input-group button {
+    width: 100%;
+  }
+}
+

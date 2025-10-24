@@ -1,0 +1,7 @@
+.main-content {
+  padding-block: 20px;
+  position: relative;
+  opacity: 1;
+  min-height: calc(100vh - 150px);
+}
+
