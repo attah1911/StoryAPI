@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Share your Dicoding stories with the community" />
+    <meta name="theme-color" content="#667eea" />
+    <link rel="shortcut icon" href="/StoryAPI/favicon.png" />
+    <link rel="manifest" href="/StoryAPI/manifest.json" />
+    <link rel="apple-touch-icon" href="/StoryAPI/favicon.png" />
+    <title>Story App - Dicoding Stories</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      
+      body:not(.loaded) {
+        opacity: 0;
+      }
+      
+      body.loaded {
+        opacity: 1;
+        transition: opacity 0.3s ease-in;
+      }
+      
+      #main-content {
+        min-height: 60vh;
+      }
+    </style>
+
+    <script>
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          document.body.classList.add('loaded');
+        });
+      } else {
+        document.body.classList.add('loaded');
+      }
+    </script>
+
+    <script type="module" crossorigin src="/StoryAPI/assets/index-rR3rGlFc.js"></script>
+    <link rel="stylesheet" crossorigin href="/StoryAPI/assets/index-a5OpmC_a.css">
+  </head>
+  <body>
+    <a href="#skip-target" class="skip-link" id="skip-link">Skip to main content</a>
+    
+    <header role="banner">
+      <div class="main-header container">
+        <a class="brand-name" href="#/" aria-label="Home - Story App">Story App</a>
+
+        <nav id="navigation-drawer" class="navigation-drawer" role="navigation" aria-label="Main navigation">
+          <ul id="nav-list" class="nav-list">
+            <li><a href="#/">Home</a></li>
+            <li><a href="#/stories">Stories</a></li>
+            <li id="favorites-nav-item"><a href="#/favorites">Favorites</a></li>
+            <li><a href="#/about">About</a></li>
+            <li id="register-nav-item"><a href="#/register">Register</a></li>
+            <li><a href="#/login" id="auth-link">Login</a></li>
+          </ul>
+        </nav>
+
+        <button id="drawer-button" class="drawer-button" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+      </div>
+    </header>
+
+    <main id="main-content" class="main-content" role="main"></main>
+    
+    <footer role="contentinfo" class="main-footer">
+      <div class="container footer-content">
+        <div class="footer-section footer-about">
+          <h3>Story App</h3>
+          <p>Share your Dicoding stories with the community</p>
+          <p class="footer-version">Version 1.0.0</p>
+        </div>
+        
+        <div class="footer-section footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#/">Home</a></li>
+            <li><a href="#/stories">Stories</a></li>
+            <li><a href="#/about">About</a></li>
+            <li><a href="#/login">Login</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section footer-social">
+          <h4>Connect</h4>
+          <ul class="social-links">
+            <li><a href="https://www.dicoding.com" target="_blank" rel="noopener noreferrer" aria-label="Dicoding Website">🌐 Dicoding</a></li>
+            <li><a href="https://github.com/attah1911" target="_blank" rel="noopener noreferrer" aria-label="Dicoding GitHub">💻 GitHub</a></li>
+            <li><a href="https://www.instagram.com/hatt.agym/" target="_blank" rel="noopener noreferrer" aria-label="Dicoding Twitter">📸 Instagram</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section footer-contact">
+          <h4>Support</h4>
+          <ul>
+            <li>📧 <a href="mailto:support@dicoding.com">hattagithub@gmail.com</a></li>
+            <li>📱 +62 895-1912-2293</li>
+            <li>📍 Jakarta, Indonesia</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="container">
+          <p>&copy; 2025 Story App. Built with ❤️ for Dicoding Submission.</p>
+          <p class="footer-attribution">Using OpenStreetMap, Leaflet.js, and Dicoding Story API</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
