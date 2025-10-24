@@ -2,17 +2,27 @@ const CACHE_NAME = 'story-app-v1';
 const DYNAMIC_CACHE = 'story-app-dynamic-v1';
 const API_CACHE = 'story-app-api-v1';
 
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/favicon.png',
-];
+const getBaseUrl = () => {
+  const scope = self.registration.scope;
+  return new URL(scope).pathname;
+};
+
+const getUrlsToCache = () => {
+  const base = getBaseUrl();
+  return [
+    base,
+    `${base}index.html`,
+    `${base}manifest.json`,
+    `${base}favicon.png`,
+  ];
+};
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
+        const urlsToCache = getUrlsToCache();
+        console.log('Caching URLs:', urlsToCache);
         return cache.addAll(urlsToCache);
       })
   );

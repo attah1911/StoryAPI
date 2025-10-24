@@ -22,10 +22,40 @@ class NotificationService {
       const swPath = `${import.meta.env.BASE_URL}sw.js`;
       this.registration = await navigator.serviceWorker.register(swPath);
       console.log('Service Worker registered');
+      
+      await this.waitForServiceWorkerActive();
     } catch (error) {
       console.error('Service Worker registration failed:', error);
       throw error;
     }
+  }
+
+  async waitForServiceWorkerActive() {
+    if (!this.registration) {
+      throw new Error('No service worker registration');
+    }
+
+    if (this.registration.active) {
+      return this.registration.active;
+    }
+
+    if (this.registration.installing) {
+      console.log('Waiting for service worker to activate...');
+      return new Promise((resolve) => {
+        this.registration.installing.addEventListener('statechange', function handler(e) {
+          if (e.target.state === 'activated') {
+            e.target.removeEventListener('statechange', handler);
+            resolve(e.target);
+          }
+        });
+      });
+    }
+
+    if (this.registration.waiting) {
+      return this.registration.waiting;
+    }
+
+    return navigator.serviceWorker.ready.then(reg => reg.active);
   }
 
   async requestPermission() {
@@ -63,6 +93,8 @@ class NotificationService {
     if (!this.registration) {
       await this.init();
     }
+
+    await this.waitForServiceWorkerActive();
 
     const hasPermission = await this.requestPermission();
     if (!hasPermission) {
@@ -167,6 +199,8 @@ class NotificationService {
     if (!this.registration) {
       await this.init();
     }
+
+    await this.waitForServiceWorkerActive();
 
     return await this.registration.pushManager.getSubscription();
   }
