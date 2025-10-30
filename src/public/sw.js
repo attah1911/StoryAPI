@@ -122,7 +122,12 @@ self.addEventListener('fetch', (event) => {
 });
 
 self.addEventListener('push', (event) => {
-  const data = event.data ? event.data.json() : {};
+  let data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch (error) {
+    data = { body: event.data.text() };
+  }
   
   const title = data.title || 'Story App';
   const body = data.body || data.options?.body || 'New story available!';
